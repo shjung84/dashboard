@@ -1,8 +1,8 @@
 import { createWebHistory, createRouter } from "vue-router";
 // import _ from "lodash";
 
-import Layout from "../layout/page";
-import PageNotFound from "../views/PageNotFound.vue";
+import Layout from "@/layout/page";
+import PageNotFound from "@/views/PageNotFound.vue";
 
 // import homeRouter from "./modules/home";
 
@@ -18,33 +18,33 @@ import PageNotFound from "../views/PageNotFound.vue";
 export const constantRoutes = [
   {
     path: "/",
-    redirect: "../views/MainPage",
+    redirect: "/MainPage",
     component: Layout,
     children: [
       {
         path: "MainPage",
-        component: () => import("../views/MainPage"),
+        component: () => import("@/views/MainPage"),
         meta: {
           title: "MainPage",
         },
       },
       {
         path: "Rooms",
-        component: () => import("../views/Rooms"),
+        component: () => import("@/views/Rooms"),
         meta: {
           title: "Rooms",
         },
       },
       {
         path: "Devices",
-        component: () => import("../views/Devices"),
+        component: () => import("@/views/Devices"),
         meta: {
           title: "Devices",
         },
       },
       {
         path: "Members",
-        component: () => import("../views/Members"),
+        component: () => import("@/views/Members"),
         meta: {
           title: "Members",
         },
@@ -62,11 +62,6 @@ export const constantRoutes = [
       title: "PageNotFound",
     },
   },
-];
-
-export const asyncRoutes = [
-  // masterRouter,
-  { path: "*", component: PageNotFound },
 ];
 
 /**
