@@ -1,2 +1,2 @@
 "use strict";(self["webpackChunkdashboard"]=self["webpackChunkdashboard"]||[]).push([[756],{756:function(n,r,a){a.r(r),a.d(r,{default:function(){return c}});var e=a(252);function o(n,r,a,o,t,u){return(0,e.wg)(),(0,e.iD)("h1",null,"Rooms")}var t={name:"Rooms",components:{},data(){return{}}},u=a(744);const s=(0,u.Z)(t,[["render",o]]);var c=s}}]);
-//# sourceMappingURL=756.de02a15a.js.map
+//# sourceMappingURL=756.56fa3362.js.map

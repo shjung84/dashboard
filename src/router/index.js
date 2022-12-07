@@ -1,8 +1,8 @@
 import { createWebHistory, createRouter } from "vue-router";
 // import _ from "lodash";
 
-import Layout from "@/layout/page";
-import PageNotFound from "@/views/PageNotFound.vue";
+import Layout from "../layout/page";
+import PageNotFound from "../views/PageNotFound.vue";
 
 // import homeRouter from "./modules/home";
 
@@ -50,6 +50,17 @@ export const constantRoutes = [
         },
       },
     ],
+  },
+  {
+    path: "/:pathMatch(.*)",
+    redirect: "/404",
+  },
+  {
+    path: "/404",
+    component: PageNotFound,
+    meta: {
+      title: "PageNotFound",
+    },
   },
 ];
 
