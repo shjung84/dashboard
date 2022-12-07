@@ -20,21 +20,18 @@ main {
     height: 10px;
   }
   &:before {
-    top: 20px;
+    top: 15px;
     background: linear-gradient(var(--color-bg-level-2), transparent);
-    /* background: linear-gradient(var(--color-theme-sub), transparent); */
   }
   &:after {
-    bottom: 20px;
-    background: linear-gradient(var(--color-theme), 40%, var(--color-theme-sub));
-    background: linear-gradient(transparent, var(--color-theme-sub));
+    bottom: 15px;
     background: linear-gradient(transparent, var(--color-bg-level-2));
   }
   .main-inner {
     position: relative;
     z-index: 2;
     width: 350px;
-    padding: 20px;
+    padding: 15px 20px;
     -webkit-border-radius: 25px;
     -moz-border-radius: 25px;
     border-radius: 25px;
@@ -55,7 +52,7 @@ export default {
   computed: {
     key() {
       console.log("AppMain :", this.$route.path);
-      return this.$route.path;
+      return this.$route.fullPath;
     },
   },
   mounted() {

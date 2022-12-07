@@ -1,7 +1,5 @@
 <template lang="pug">
 router-view
-//- router-view(:key="key")
-//- router-view(v-if="refresh" :key="key")
 </template>
 
 <script>

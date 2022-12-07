@@ -130,6 +130,9 @@
   > .el-scrollbar__bar.is-vertical {
     right: -10px;
   }
+  .el-scrollbar__view {
+    padding: 5px 0;
+  }
 }
 
 .vc-container {
@@ -242,7 +245,7 @@
 
 <template lang="pug">
 .dashboard
-  el-scrollbar(class="pst--scroll" height="360px")
+  el-scrollbar(class="pst--scroll" height="370px")
     .c-card
       .c-card__item.no-pd
         .c-card__inner
