@@ -23,28 +23,28 @@ export const constantRoutes = [
     children: [
       {
         path: "MainPage",
-        component: () => import("@/views/MainPage"),
+        component: () => import("../views/MainPage"),
         meta: {
           title: "MainPage",
         },
       },
       {
         path: "Rooms",
-        component: () => import("@/views/Rooms"),
+        component: () => import("../views/Rooms"),
         meta: {
           title: "Rooms",
         },
       },
       {
         path: "Devices",
-        component: () => import("@/views/Devices"),
+        component: () => import("../views/Devices"),
         meta: {
           title: "Devices",
         },
       },
       {
         path: "Members",
-        component: () => import("@/views/Members"),
+        component: () => import("../views/Members"),
         meta: {
           title: "Members",
         },
