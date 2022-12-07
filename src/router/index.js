@@ -18,7 +18,7 @@ import PageNotFound from "../views/PageNotFound.vue";
 export const constantRoutes = [
   {
     path: "/",
-    redirect: "/MainPage",
+    redirect: "../views/MainPage",
     component: Layout,
     children: [
       {
@@ -51,10 +51,10 @@ export const constantRoutes = [
       },
     ],
   },
-  {
-    path: "/:pathMatch(.*)",
-    redirect: "/404",
-  },
+  // {
+  //   path: "/:pathMatch(.*)",
+  //   redirect: "/404",
+  // },
   {
     path: "/404",
     component: PageNotFound,
