@@ -130,8 +130,11 @@
   > .el-scrollbar__bar.is-vertical {
     right: -10px;
   }
-  .el-scrollbar__view {
-    padding: 5px 0;
+  &.main--scroll {
+    overflow: visible;
+    .el-scrollbar__view {
+      padding: 5px 0;
+    }
   }
 }
 
@@ -245,7 +248,7 @@
 
 <template lang="pug">
 .dashboard
-  el-scrollbar(class="pst--scroll" height="370px")
+  el-scrollbar(class="pst--scroll main--scroll" height="370px")
     .c-card
       .c-card__item.no-pd
         .c-card__inner
@@ -256,70 +259,25 @@
           .l-member
             el-scrollbar(class="pst--scroll" height="138px")
               ul.l-member__list
-                li.l-member__item
+                li.l-member__item(v-for="item of memberList")
                   .l-member__inner
                     p.l-member__photo #[mdicon(name="account" size="15")]
-                    strong.l-member__name Jone Doe
-                    span.l-member__date 2022.12.02
-                li.l-member__item
-                  .l-member__inner
-                    p.l-member__photo #[mdicon(name="account" size="15")]
-                    strong.l-member__name Jone Doe
-                    span.l-member__date 2022.12.02
-                li.l-member__item
-                  .l-member__inner
-                    p.l-member__photo #[mdicon(name="account" size="15")]
-                    strong.l-member__name JoneJone DoeDoe
-                    span.l-member__date 2022.12.02
-                li.l-member__item
-                  .l-member__inner
-                    p.l-member__photo #[mdicon(name="account" size="15")]
-                    strong.l-member__name JoneJone DoeDoe
-                    span.l-member__date 2022.12.02
-                li.l-member__item
-                  .l-member__inner
-                    p.l-member__photo #[mdicon(name="account" size="15")]
-                    strong.l-member__name JoneJone DoeDoe
-                    span.l-member__date 2022.12.02
-                li.l-member__item
-                  .l-member__inner
-                    p.l-member__photo #[mdicon(name="account" size="15")]
-                    strong.l-member__name JoneJone DoeDoe
-                    span.l-member__date 2022.12.02
-
-
+                    strong.l-member__name {{ item.name }}
+                    span.l-member__date {{ item.date }}
     .c-card
-      .c-card__item
+      .c-card__item(v-for="item of cardList")
         .c-card__inner
-          strong(class="c-card__title") Indoor Temperature
-          .c-card__type--number #[strong 27] #[span ℃]
+          strong(class="c-card__title") {{ item.name }}
+          .c-card__type--number #[strong {{ item.value }}] #[span {{ item.type }}]
           .c-card__type--button
             button(class="btn--up") #[mdicon(name="chevron-up" size="15")]
             button(class="btn--down") #[mdicon(name="chevron-down" size="15")]
-      .c-card__item
-        .c-card__inner
-          strong(class="c-card__title") Humidity
-          .c-card__type--number #[strong 25] #[span %]
-          .c-card__type--button
-            button(class="btn--up") #[mdicon(name="chevron-up" size="15")]
-            button(class="btn--down") #[mdicon(name="chevron-down" size="15")]
-      .c-card__item
-        .c-card__inner
-          strong(class="c-card__title") Bed room
-          .c-card__type--number #[strong 27] #[span ℃]
-          .c-card__type--button
-            button(class="btn--up") #[mdicon(name="chevron-up" size="15")]
-            button(class="btn--down") #[mdicon(name="chevron-down" size="15")]
-      .c-card__item
-        .c-card__inner
-          strong(class="c-card__title") Living room
     .c-card
       .c-card__item.no-pd.col-1
         .c-card__inner
           el-table(:data="tableData" height="130" style="width:100%")
             el-table-column(prop="date" align="center" label="Date" min-width="80")
             el-table-column(prop="name" align="center" label="Name")
-
 </template>
 
 <script>
@@ -333,22 +291,70 @@ export default {
   data() {
     return {
       date: new Date(),
+      memberList: [
+        {
+          name: "Jone Doe 1",
+          date: "2022.12.02",
+        },
+        {
+          name: "Jone Doe 2",
+          date: "2022.12.02",
+        },
+        {
+          name: "Jone Doe 3",
+          date: "2022.12.02",
+        },
+        {
+          name: "Jone Doe 4",
+          date: "2022.12.02",
+        },
+        {
+          name: "Jone Doe 5",
+          date: "2022.12.02",
+        },
+        {
+          name: "Jone Doe 6",
+          date: "2022.12.02",
+        },
+      ],
+      cardList: [
+        {
+          name: "Indoor Temperature",
+          value: "27",
+          type: "℃",
+        },
+        {
+          name: "Bed room",
+          value: "25",
+          type: "℃",
+        },
+        {
+          name: "Humidity",
+          value: "25",
+          type: "%",
+        },
+        {
+          name: "Living room",
+          value: "25",
+          type: "%",
+        },
+      ],
       tableData: [
         {
           date: "2016-05-03",
-          name: "Tom",
+          name: "Tom 1",
         },
         {
           date: "2016-05-02",
-          name: "Tom",
+          name: "Tom 2",
         },
         {
           date: "2016-05-04",
-          name: "Tom",
+          name: "Tom 3",
         },
         {
           date: "2016-05-01",
-          name: "Tom",
+          name: "Tom 4",
         },
       ],
     };

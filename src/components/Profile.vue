@@ -176,10 +176,8 @@
 .c-quick
   .c-quick__inner
     .c-quick__top
-      a(href="javascript:;" class="btn-search" title="Search") #[mdicon(name="magnify"  size="15")]
-      el-badge( :value="12" class="item")
-        a(href="javascript:;" class="btn-notice" title="notice") #[mdicon(name="bell-outline" size="15")]
-      a(href="javascript:;" class="btn-account" title="Account") #[mdicon(name="account-settings" size="15")]
+      //- el-badge(:value="12" class="item")
+      a(v-for="item of list" href="javascript:;" :class="item.class" :title="item.name") #[mdicon(:name="item.icon"  size="15")]
     .c-quick__temperature
       dl
         dt Outdoor Temperature
@@ -191,36 +189,12 @@
       a(href="javascript:;" class="btn-more") #[mdicon(name="dots-horizontal" size="15")]
       el-scrollbar(class="pst--scroll" height="155px")
         .c-card
-          .c-card__item
-            .icon #[mdicon(name="ceiling-light" size="20")]
+          .c-card__item(v-for="item of device")
+            .icon #[mdicon(:name="item.icon" size="20")]
             dl
-              dt Lamp
-              dd 70%
-            el-button(circle) #[mdicon(name="power-standby" size="13")]
-          .c-card__item
-            .icon #[mdicon(name="television-classic" size="20")]
-            dl
-              dt Smart TV
-              dd On
-            el-button(class="is-active" circle) #[mdicon(name="power-standby" size="13")]
-          .c-card__item
-            .icon #[mdicon(name="door-open" size="20")]
-            dl
-              dt Door
-              dd Look
-            el-button(circle) #[mdicon(name="power-standby" size="13")]
-          .c-card__item
-            .icon #[mdicon(name="air-filter" size="20")]
-            dl
-              dt AC
-              dd Off
-            el-button(circle) #[mdicon(name="power-standby" size="13")]
-          .c-card__item
-            .icon #[mdicon(name="air-purifier" size="20")]
-            dl
-              dt AC
-              dd Off
-            el-button(circle) #[mdicon(name="power-standby" size="13")]
+              dt {{ item.name }}
+              dd {{ item. value }}
+            el-button(:class="{'is-active': item.state === 1}" circle) #[mdicon(name="power-standby" size="13")]
 </template>
 
 <script>
@@ -228,6 +202,59 @@ export default {
   name: "MyDevice",
   props: {
     msg: String,
+  },
+  data() {
+    return {
+      list: [
+        {
+          name: "Search",
+          class: "btn-search",
+          icon: "magnify",
+        },
+        {
+          name: "Notice",
+          class: "btn-notice",
+          icon: "bell-outline",
+        },
+        {
+          name: "Account",
+          class: "btn-account",
+          icon: "account-settings",
+        },
+      ],
+      device: [
+        {
+          name: "Lamp",
+          icon: "ceiling-light",
+          value: "70%",
+          state: 0,
+        },
+        {
+          name: "Smart TV",
+          icon: "television-classic",
+          value: "On",
+          state: 1,
+        },
+        {
+          name: "Door",
+          icon: "door-open",
+          value: "Look",
+          state: 0,
+        },
+        {
+          name: "AC",
+          icon: "air-filter",
+          value: "Off",
+          state: 0,
+        },
+        {
+          name: "AP",
+          icon: "air-purifier",
+          value: "On",
+          state: 0,
+        },
+      ],
+    };
   },
 };
 </script>

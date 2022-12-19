@@ -49,12 +49,19 @@ export const constantRoutes = [
           title: "Members",
         },
       },
+      {
+        path: "Logout",
+        component: () => import("@/views/Logout"),
+        meta: {
+          title: "Logout",
+        },
+      },
     ],
   },
-  // {
-  //   path: "/:pathMatch(.*)",
-  //   redirect: "/404",
-  // },
+  {
+    path: "/:pathMatch(.*)",
+    redirect: "/404",
+  },
   {
     path: "/404",
     component: PageNotFound,

@@ -42,7 +42,6 @@ aside {
     display: flex;
     position: relative;
     width: 100%;
-
     ul {
       display: flex;
       flex-direction: column;
@@ -50,33 +49,27 @@ aside {
       position: relative;
       z-index: 2;
       width: 100%;
+      /* background-color: #fcc; */
       li {
         position: relative;
         margin-right: -15px;
         height: 35px;
-
+        &.logout {
+          margin-top: auto;
+        }
         a {
           display: block;
           padding: 10px 10px 10px 15px;
           color: var(--color-bg);
-          /* color: var(--color-theme); */
-          /* text-shadow: 0 -1px 1px var(--color--opacity-5); */
-          /* text-shadow: 0 0 1px var(--color-bg-opacity-5), -1px -1px 0 #666; */
-          /* text-shadow: 0 0 1px var(--color-bg-opacity-5); */
           em {
             vertical-align: middle;
           }
           .mdi + em {
             margin-left: 7px;
           }
-        }
-        &.logout {
-          margin-top: auto;
-        }
-
-        &.isCurrent {
-          a {
+          &.router-link-active {
             color: var(--color-theme);
+            color: var(--color);
             font-weight: bold;
             transition: all 0.1s ease-out;
           }
@@ -120,49 +113,70 @@ aside
   h1 h1
   #lnb
     ul
-      li(:class="{isCurrent: newActive === 0}" @click="handleNewMenuId(0)")
-        router-link(to="/MainPage")
-          mdicon(name="chart-donut-variant" size="15")
-          em Dashboard
-      li(:class="{isCurrent: newActive === 1}" @click="handleNewMenuId(1)")
-        router-link(to="/Rooms")
-          mdicon(name="door-open" size="15")
-          em Rooms
-      li( :class="{isCurrent: newActive === 2}" @click="handleNewMenuId(2)")
-        router-link(to="/Devices")
-          mdicon(name="cellphone-link" size="15")
-          em Devices
-      li(:class="{isCurrent: newActive === 3}" @click="handleNewMenuId(3)")
-        router-link(to="/Members")
-          mdicon(name="account-group-outline" size="15")
-          em Members
-      li.logout
-        a(href="javascript:;")
-          mdicon(name="power" size="15")
-          em Logout
-    .slide-bar
-
+      li(
+        v-for="(item, i) of list"
+        :key="item.name"
+        )
+        router-link(:to="item.link" @click="onMenu(i)")
+          mdicon(:name="item.icon" size="15")
+          em {{ i }} : {{ item.name }}
+      li(class="logout")
+        a(href="javascript:;" title="Logout") #[mdicon(name="power" size="15")] #[em Logout]
+    .slide-bar()
 </template>
 
 <script>
 import { ref } from "vue";
 
 export default {
-  computed: {},
-  mounted() {
-    console.log(`Aside : mounted`);
+  computed: {
+    key() {
+      console.log("Aside :", this.$route.fullPath);
+      return this.$route.fullPath;
+    },
   },
-  methods: {},
+  watch: {},
   setup() {
-    const newActive = ref(0);
-    const handleNewMenuId = idx => {
-      newActive.value = idx;
+    const newCurrent = ref(0);
+    const onMenu = idx => {
+      newCurrent.value = idx;
       document.getElementsByClassName("slide-bar")[0].style.top = idx * 35 + "px";
+      console.log(idx);
     };
     return {
-      newActive,
-      handleNewMenuId,
+      newCurrent,
+      onMenu,
     };
   },
+  data() {
+    return {
+      list: [
+        {
+          name: "Dashboard",
+          link: "/MainPage",
+          icon: "chart-donut-variant",
+        },
+        {
+          name: "Rooms",
+          link: "/Rooms",
+          icon: "door-open",
+        },
+        {
+          name: "Devices",
+          link: "/Devices",
+          icon: "cellphone-link",
+        },
+        {
+          name: "Members",
+          link: "/Members",
+          icon: "account-group-outline",
+        },
+      ],
+    };
+  },
+  mounted() {
+    // console.log(`Aside : mounted`);
+  },
+  methods: {},
 };
 </script>

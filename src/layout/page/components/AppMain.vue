@@ -51,12 +51,12 @@ export default {
   components: {},
   computed: {
     key() {
-      console.log("AppMain :", this.$route.path);
+      // console.log("AppMain :", this.$route.fullPath);
       return this.$route.fullPath;
     },
   },
   mounted() {
-    console.log(`AppMain : mounted`);
+    // console.log(`AppMain : mounted`);
   },
 };
 </script>
