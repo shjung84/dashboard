@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkdashboard"]=self["webpackChunkdashboard"]||[]).push([[282],{282:function(n,r,t){t.r(r),t.d(r,{default:function(){return c}});var u=t(252);function a(n,r,t,a,e,o){return(0,u.wg)(),(0,u.iD)("h1",null,"Logout")}var e={name:"Logout",components:{},data(){return{}}},o=t(744);const s=(0,o.Z)(e,[["render",a]]);var c=s}}]);
+//# sourceMappingURL=282.6f2418ba.js.map
