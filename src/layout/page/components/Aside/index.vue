@@ -153,7 +153,7 @@ export default {
       list: [
         {
           name: "Dashboard",
-          link: "/MainPage",
+          link: "/",
           icon: "chart-donut-variant",
         },
         {

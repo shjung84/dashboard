@@ -18,11 +18,11 @@ import PageNotFound from "@/views/PageNotFound.vue";
 export const constantRoutes = [
   {
     path: "/",
-    redirect: "/MainPage",
+    // redirect: "/MainPage",
     component: Layout,
     children: [
       {
-        path: "MainPage",
+        path: "/",
         component: () => import("@/views/MainPage"),
         meta: {
           title: "MainPage",
