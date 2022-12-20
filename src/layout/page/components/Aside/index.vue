@@ -152,8 +152,8 @@ export default {
     return {
       list: [
         {
-          name: "Dashboard",
-          link: "/",
+          name: "MainPage",
+          link: "/MainPage",
           icon: "chart-donut-variant",
         },
         {
