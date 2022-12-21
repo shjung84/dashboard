@@ -2,22 +2,21 @@
 
 <template lang="pug">
 #container
-  Aside
+  Nav
   app-main
-  Profile(msg="My Device")
-
+  Aside
 </template>
 
 <script>
-import Aside from "./components/Aside";
+import Nav from "./components/Nav";
 import AppMain from "./components/AppMain";
-import Profile from "@/components/Profile.vue";
+import Aside from "./components/Aside";
 
 export default {
   components: {
+    Nav,
     AppMain,
     Aside,
-    Profile,
   },
   computed: {},
 };

@@ -57,21 +57,47 @@
     button {
       display: flex;
       justify-content: center;
+      overflow: hidden;
+      position: relative;
       width: 100%;
       height: 50%;
       border: 0;
       background-color: var(--color--opacity-1);
       color: var(--color-theme-sub);
       font-size: 0;
+      transition: all 0.3s;
+      &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: linear-gradient(var(--color--opacity-1) 30%, 50%, transparent 80%);
+        opacity: 0;
+        transition: all 0.3s;
+      }
+      &:hover:before {
+        opacity: 1;
+      }
       &.btn--up {
         align-items: flex-start;
         padding-top: 5px;
         border-radius: 20px 20px 0 0;
       }
       &.btn--down {
-        padding-bottom: 5px;
         align-items: flex-end;
+        padding-bottom: 5px;
         border-radius: 0 0 20px 20px;
+        &:before {
+          transform: rotate(180deg);
+        }
+      }
+      &:active {
+        color: var(--color-theme-sub-active);
+      }
+      &:disabled {
+        color: var(--color--opacity-3);
       }
     }
   }
@@ -265,19 +291,19 @@
                     strong.l-member__name {{ item.name }}
                     span.l-member__date {{ item.date }}
     .c-card
-      .c-card__item(v-for="item of cardList")
+      .c-card__item(v-for="(item,index) of cardList")
         .c-card__inner
           strong(class="c-card__title") {{ item.name }}
-          .c-card__type--number #[strong {{ item.value }}] #[span {{ item.type }}]
+          .c-card__type--number #[strong {{ item.number }}] #[span {{ item.type }}]
           .c-card__type--button
-            button(class="btn--up") #[mdicon(name="chevron-up" size="15")]
-            button(class="btn--down") #[mdicon(name="chevron-down" size="15")]
+            button(class="btn--up" @click="countUp(index)") #[mdicon(name="chevron-up" size="15")]
+            button(class="btn--down" @click="countDown(index)" :disabled="item.number==item.minNum") #[mdicon(name="chevron-down" size="15")]
     .c-card
       .c-card__item.no-pd.col-1
         .c-card__inner
           el-table(:data="tableData" height="130" style="width:100%")
-            el-table-column(prop="date" align="center" label="Date" min-width="80")
-            el-table-column(prop="name" align="center" label="Name")
+            el-table-column(prop="name" align="center" label="Name" width="100")
+            el-table-column(prop="date" align="center" label="Date")
 </template>
 
 <script>
@@ -320,23 +346,31 @@ export default {
       cardList: [
         {
           name: "Indoor Temperature",
-          value: "27",
+          number: "27",
           type: "℃",
+          maxNum: "40",
+          minNum: "20",
         },
         {
           name: "Bed room",
-          value: "25",
+          number: "25",
           type: "℃",
+          maxNum: "40",
+          minNum: "20",
         },
         {
           name: "Humidity",
-          value: "25",
+          number: "25",
           type: "%",
+          maxNum: "100",
+          minNum: "20",
         },
         {
           name: "Living room",
-          value: "25",
+          number: "25",
           type: "%",
+          maxNum: "100",
+          minNum: "20",
         },
       ],
       tableData: [
@@ -358,6 +392,14 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    countUp(idx) {
+      this.cardList[idx].number++;
+    },
+    countDown(idx) {
+      this.cardList[idx].number--;
+    },
   },
 };
 </script>

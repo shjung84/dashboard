@@ -1,182 +1,192 @@
 <style lang="scss" scoped>
-aside {
+.c-quick {
   display: flex;
-  flex: none;
+  flex-direction: column;
   position: relative;
-  z-index: 2;
-  width: 150px;
-  padding: 100px 15px 30px;
-
-  h1 {
-    position: absolute;
-    top: 30px;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    font-size: 0;
-
-    &:before,
-    &:after {
-      content: "";
-      display: block;
-      position: absolute;
-      top: 0;
-      width: 40px;
-      height: 40px;
-      background-color: var(--color-bg-opacity-5);
+  z-index: 1;
+  width: 200px;
+  height: 100%;
+  padding: 17px 20px;
+  &__inner {
+    position: relative;
+    height: 100%;
+    .sec {
+      padding: 10px;
+      -webkit-border-radius: 15px;
+      -moz-border-radius: 15px;
+      border-radius: 15px;
+    }
+  }
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    a {
+      display: flex;
+      width: 33px;
+      height: 33px;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
       -webkit-border-radius: 50%;
       -moz-border-radius: 50%;
       border-radius: 50%;
-    }
-    &:before {
-      left: 50%;
-      margin-left: -10px;
-    }
-    &:after {
-      right: 50%;
-      margin-right: -10px;
+      color: var(--color--opacity-5);
     }
   }
-
-  #lnb {
-    display: flex;
+  &__temperature {
+    overflow: hidden;
     position: relative;
-    width: 100%;
-    ul {
-      display: flex;
-      flex-direction: column;
-      flex-basis: 100%;
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      /* background-color: #fcc; */
-      li {
-        position: relative;
-        margin-right: -15px;
-        height: 35px;
-        &.logout {
-          margin-top: auto;
-        }
-        a {
-          display: block;
-          padding: 10px 10px 10px 15px;
-          color: var(--color-bg);
-          em {
-            vertical-align: middle;
-          }
-          .mdi + em {
-            margin-left: 7px;
-          }
-          &.router-link-active {
-            color: var(--color-theme);
-            color: var(--color);
-            font-weight: bold;
-            transition: all 0.1s ease-out;
-          }
-        }
-      }
-    }
-    .slide-bar {
+    height: 130px;
+    margin-top: 10px;
+    padding: 17px 20px;
+    background-color: var(--color-theme-sub);
+    color: var(--color-bg);
+    font-size: 11px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    letter-spacing: 1px;
+
+    &:before {
+      content: "";
       position: absolute;
-      top: 0;
-      right: -15px;
-      left: 0;
-      z-index: 1;
-      height: 35px;
-      background-color: var(--color-slidebar);
-      border-radius: 30px 0 0 30px;
-      transition: top 0.1s ease-out;
+      top: 100%;
+      left: 100%;
+      width: 120px;
+      height: 120px;
+      margin: -75px 0 0 -75px;
+      border: 20px solid var(--color-bg-opacity-1);
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%;
+      box-sizing: border-box;
+    }
+
+    a {
+      position: absolute;
+      right: 15px;
+      bottom: 15px;
+      z-index: 2;
+      color: #fff;
+    }
+    dl {
       &:before,
       &:after {
         content: "";
         position: absolute;
-        right: 0;
-        width: 30px;
-        height: 30px;
-        background-color: var(--color-slidebar);
+        width: 90px;
+        height: 90px;
+        background-color: var(--color-bg-opacity-1);
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
       }
       &:before {
-        bottom: 100%;
-        background: radial-gradient(circle at 0 0, transparent 30px, var(--color-slidebar) 30px);
+        bottom: 80%;
+        left: 70%;
       }
       &:after {
-        top: 100%;
-        background: radial-gradient(circle at 0 100%, transparent 30px, var(--color-slidebar) 30px);
+        top: 80%;
+        right: 70%;
+      }
+      dd {
+        margin-top: 5px;
+        &.type--weather {
+          font-size: 9px;
+          letter-spacing: 1px;
+        }
       }
     }
   }
 }
 </style>
+<style lang="scss">
+.el-scrollbar.pst--scroll {
+  overflow: visible;
+  > .el-scrollbar__bar.is-vertical {
+    right: -10px;
+  }
+}
+.el-badge__content {
+  font-size: 11px;
+}
+</style>
 
 <template lang="pug">
-aside
-  h1 h1
-  #lnb
-    ul
-      li(
-        v-for="(item, i) of list"
-        :key="item.name"
-        )
-        router-link(:to="item.link" @click="onMenu(i)")
-          mdicon(:name="item.icon" size="15")
-          em {{ i }} : {{ item.name }}
-      li(class="logout")
-        a(href="javascript:;" title="Logout") #[mdicon(name="power" size="15")] #[em Logout]
-    .slide-bar()
+.c-quick
+  .c-quick__inner
+    .c-quick__top
+      //- el-badge(:value="12" class="item")
+      a(v-for="item of list" href="javascript:;" :class="item.class" :title="item.name") #[mdicon(:name="item.icon"  size="15")]
+    .c-quick__temperature
+      dl
+        dt Outdoor Temperature
+        dd.type--number #[strong 27] #[span ℃]
+        dd.type--weather Cloudy
+      a(href="javascript:;") #[mdicon(name="dots-horizontal" size="15")]
+    QuickDevice(title="My Device")
 </template>
 
 <script>
-import { ref } from "vue";
+import QuickDevice from "@/components/QuickDevice.vue";
 
 export default {
-  computed: {
-    key() {
-      console.log("Aside :", this.$route.fullPath);
-      return this.$route.fullPath;
-    },
-  },
-  watch: {},
-  setup() {
-    const newCurrent = ref(0);
-    const onMenu = idx => {
-      newCurrent.value = idx;
-      document.getElementsByClassName("slide-bar")[0].style.top = idx * 35 + "px";
-      console.log(idx);
-    };
-    return {
-      newCurrent,
-      onMenu,
-    };
+  name: "MyDevice",
+  components: {
+    QuickDevice,
   },
   data() {
     return {
       list: [
         {
-          name: "MainPage",
-          link: "/MainPage",
-          icon: "chart-donut-variant",
+          name: "Search",
+          class: "btn-search",
+          icon: "magnify",
         },
         {
-          name: "Rooms",
-          link: "/Rooms",
+          name: "Notice",
+          class: "btn-notice",
+          icon: "bell-outline",
+        },
+        {
+          name: "Account",
+          class: "btn-account",
+          icon: "account-settings",
+        },
+      ],
+      device: [
+        {
+          name: "Lamp",
+          icon: "ceiling-light",
+          value: "70%",
+          state: 0,
+        },
+        {
+          name: "Smart TV",
+          icon: "television-classic",
+          value: "On",
+          state: 1,
+        },
+        {
+          name: "Door",
           icon: "door-open",
+          value: "Look",
+          state: 0,
         },
         {
-          name: "Devices",
-          link: "/Devices",
-          icon: "cellphone-link",
+          name: "AC",
+          icon: "air-filter",
+          value: "Off",
+          state: 0,
         },
         {
-          name: "Members",
-          link: "/Members",
-          icon: "account-group-outline",
+          name: "AP",
+          icon: "air-purifier",
+          value: "On",
+          state: 0,
         },
       ],
     };
   },
-  mounted() {
-    // console.log(`Aside : mounted`);
-  },
-  methods: {},
 };
 </script>
