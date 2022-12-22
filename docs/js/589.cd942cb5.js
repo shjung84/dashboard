@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkdashboard"]=self["webpackChunkdashboard"]||[]).push([[589],{589:function(e,t,n){n.r(t),n.d(t,{default:function(){return c}});var r=n(252),a=n(577);function u(e,t,n,u,s,d){return(0,r.wg)(),(0,r.iD)("h1",null,(0,a.zw)(n.title),1)}var s={name:"Devices",props:{title:{type:String,default:""}},components:{},computed:{},data(){return{}},methods:{}},d=n(744);const o=(0,d.Z)(s,[["render",u]]);var c=o}}]);
+//# sourceMappingURL=589.cd942cb5.js.map
