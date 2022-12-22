@@ -6,20 +6,13 @@ router-view
 export default {
   name: "App",
   components: {},
-  computed: {
-    key() {
-      console.log("App :", this.$route.path);
-      return this.$route.path;
-    },
-  },
+  computed: {},
   watch: {},
   data() {
-    return {
-      refresh: true,
-    };
+    return {};
   },
   mounted() {
-    console.log(`App : mounted`);
+    // console.log(`App : mounted`);
   },
 };
 </script>

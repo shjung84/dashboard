@@ -115,7 +115,8 @@ nav
     ul
       li(
         v-for="(item, i) of list"
-        :key="item.name"
+        :key="i"
+
         )
         router-link(:to="item.link" @click="getMenu(i)")
           mdicon(:name="item.icon" size="15")
@@ -129,6 +130,12 @@ nav
 // import { ref } from "vue";
 
 export default {
+  props: {
+    title: {
+      type: String,
+      default: "",
+    },
+  },
   watch: {
     $route(to, from) {
       console.log(to.fullPath, from.fullPath);
@@ -178,8 +185,10 @@ export default {
   },
   computed: {
     key() {
-      console.log("Nav :", this.$route.fullPath);
-      return this.$route.fullPath;
+      // console.log("Nav :", this.$route.fullPath);
+      // return this.$route.fullPath;
+      console.log("Nav :", this.$route.name);
+      return this.$route.name;
     },
     positionTop() {
       return `${this.setPosition}px`;
@@ -190,8 +199,8 @@ export default {
   },
   methods: {
     init() {
+      console.log(`this.title : ${this.title}`);
       console.log(`this.menuLength : ${this.list.length}`);
-      console.log(`${this.list}`);
     },
     getMenu(idx) {
       this.setPosition = 35 * idx;

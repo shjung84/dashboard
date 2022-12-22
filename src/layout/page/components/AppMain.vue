@@ -42,7 +42,7 @@ main {
 <template lang="pug">
 main
   .main-inner
-    router-view(:key="key")
+    router-view(:title="title")
 </template>
 
 <script>
@@ -50,8 +50,9 @@ export default {
   name: "AppMain",
   components: {},
   computed: {
-    key() {
-      return this.$route.fullPath;
+    title() {
+      console.log("AppMain :", this.$route.meta.title);
+      return this.$route.meta.title;
     },
   },
   mounted() {},

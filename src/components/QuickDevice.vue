@@ -109,7 +109,10 @@
 export default {
   name: "QuickDevice",
   props: {
-    title: String,
+    title: {
+      type: String,
+      default: "",
+    },
     value: {
       type: String,
       default: "",

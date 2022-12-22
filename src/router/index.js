@@ -34,6 +34,7 @@ export const constantRoutes = [
         meta: {
           title: "Rooms",
         },
+        props: true,
       },
       {
         path: "Devices",

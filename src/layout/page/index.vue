@@ -2,7 +2,7 @@
 
 <template lang="pug">
 #container
-  Nav
+  Nav(:title="key")
   app-main
   Aside
 </template>
@@ -18,6 +18,11 @@ export default {
     AppMain,
     Aside,
   },
-  computed: {},
+  computed: {
+    key() {
+      console.log("pages :", this.$route.meta.title);
+      return this.$route.meta.title;
+    },
+  },
 };
 </script>
